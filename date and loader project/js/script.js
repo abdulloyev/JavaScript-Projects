@@ -65,6 +65,11 @@ window.addEventListener("DOMContentLoaded", () => {
     };
   }
 
+  // TODO: Format number
+  function formatNumber(num) {
+    return num < 10 ? `0${num}` : num;
+  }
+
   function setClock(selector, endtime) {
     const timer = document.querySelector(selector),
       days = timer.querySelector("#days"),
@@ -76,10 +81,10 @@ window.addEventListener("DOMContentLoaded", () => {
     function updateClock() {
       const time = getTimeRemaining(endtime);
 
-      days.innerHTML = time.days;
-      hours.innerHTML = time.hours;
-      minutes.innerHTML = time.minutes;
-      seconds.innerHTML = time.seconds;
+      days.innerHTML = formatNumber(time.days);
+      hours.innerHTML = formatNumber(time.hours);
+      minutes.innerHTML = formatNumber(time.minutes);
+      seconds.innerHTML = formatNumber(time.seconds);
 
       if (time.total <= 0) {
         clearInterval(timeInterval);
