@@ -1,0 +1,48 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #1f1f1fba;
+}
+
+.wrapper {
+	width: 100%;
+	height: 100px;
+	background-color: #1f1f1f;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+}
+
+.wrapper button {
+	width: 100px;
+	height: 50px;
+	border-radius: 5px;
+	outline: none;
+	border: none;
+	font-size: 25px;
+	font-weight: bold;
+	transition: all 0.3s ease;
+}
+
+.wrapper button:active {
+	border: 1px solid blue;
+	transform: translateY(-10px);
+	transition: all 0.3s ease;
+}
+
+.blue {
+	background-color: blue;
+}
+
+.red {
+	background-color: red;
+}
+
+.yellow {
+	background-color: yellow;
+}
