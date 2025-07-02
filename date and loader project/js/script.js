@@ -39,4 +39,57 @@ window.addEventListener("DOMContentLoaded", () => {
   // Initialize the first tab as active
   hideTabContent();
   showTabContent();
+
+  // TODO: Add a loader
+  const loaderWrapper = document.querySelector(".loader-wrapper");
+  setTimeout(() => {
+    loaderWrapper.style.display = "none";
+  }, 1500);
+
+  // TODO: Timer
+  const deadline = "2025-12-31";
+
+  function getTimeRemaining(endtime) {
+    const t = Date.parse(endtime) - Date.parse(new Date()),
+      seconds = Math.floor((t / 1000) % 60),
+      minutes = Math.floor((t / 1000 / 60) % 60),
+      hours = Math.floor((t / (1000 * 60 * 60)) % 24),
+      days = Math.floor(t / (1000 * 60 * 60 * 24));
+
+    return {
+      total: t,
+      days,
+      hours,
+      minutes,
+      seconds,
+    };
+  }
+
+  function setClock(selector, endtime) {
+    const timer = document.querySelector(selector),
+      days = timer.querySelector("#days"),
+      hours = timer.querySelector("#hours"),
+      minutes = timer.querySelector("#minutes"),
+      seconds = timer.querySelector("#seconds"),
+      timeInterval = setInterval(updateClock, 1000);
+
+    function updateClock() {
+      const time = getTimeRemaining(endtime);
+
+      days.innerHTML = time.days;
+      hours.innerHTML = time.hours;
+      minutes.innerHTML = time.minutes;
+      seconds.innerHTML = time.seconds;
+
+      if (time.total <= 0) {
+        clearInterval(timeInterval);
+        days.innerHTML = "00";
+        hours.innerHTML = "00";
+        minutes.innerHTML = "00";
+        seconds.innerHTML = "00";
+      }
+    }
+  }
+
+  setClock(".timer", deadline);
 });
